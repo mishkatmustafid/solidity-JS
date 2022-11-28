@@ -6,10 +6,10 @@ import "../node_modules/@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Int
 import "./PriceConverter.sol";
 
 // 3. Interfaces, Libraries, Contracts
-error FundMe__NotOwner();
+error NotOwner();
 
 /**@title A sample Funding Contract
- * @author Patrick Collins
+ * @author Mishkat Mustafid
  * @notice This contract is for creating a sample funding contract
  * @dev This implements price feeds as our library
  */
@@ -28,8 +28,8 @@ contract FundMe {
 
   // Modifiers
   modifier onlyOwner() {
-    // require(msg.sender == i_owner);
-    if (msg.sender != i_owner) revert FundMe__NotOwner();
+    require(msg.sender == i_owner, "FundMe__NotOwner");
+    // if (msg.sender != i_owner) revert NotOwner();
     _;
   }
 
