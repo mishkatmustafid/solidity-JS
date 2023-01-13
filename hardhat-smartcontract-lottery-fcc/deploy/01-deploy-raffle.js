@@ -50,6 +50,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
     waitConfirmations: waitBlockConfirmations,
   })
+  if (chainId == 31337) {
+    await vrfCoordinatorV2Mock.addConsumer(subscriptionId.toNumber(), raffle.address)
+  }
 
   // Verify the deployment
   if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
